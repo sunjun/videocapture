@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fc5-xH-2eE">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Capture Video View Controller-->
+        <scene sceneID="ko7-iK-fW9">
+            <objects>
+                <viewController id="XRj-sh-2Jt" customClass="MXCaptureVideoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3xV-uV-FnD"/>
+                        <viewControllerLayoutGuide type="bottom" id="piq-Iz-VXY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GfQ-Qj-e1U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3w-1d-gzx">
+                                <rect key="frame" x="0.0" y="20" width="375" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="621-TZ-Qac"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WfU-R6-y9Y">
+                                <rect key="frame" x="0.0" y="450" width="375" height="217"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAh-QR-Ngv">
+                                        <rect key="frame" x="0.0" y="53" width="375" height="110"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bk-xq-Occ">
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="110"/>
+                                                <state key="normal" title="上一个循环"/>
+                                                <connections>
+                                                    <action selector="forwardLoop:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="RKM-cg-Olm"/>
+                                                    <action selector="startRecord:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="IKy-Qm-d7b"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VmJ-wM-iq1">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="110"/>
+                                                <state key="normal" title="暂停">
+                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-XN-FuX">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="110"/>
+                                                <state key="normal" title="下一个循环"/>
+                                                <connections>
+                                                    <action selector="nextLoop:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="dgf-xW-xtc"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="VmJ-wM-iq1" firstAttribute="width" secondItem="3bk-xq-Occ" secondAttribute="width" id="Q26-S6-iiK"/>
+                                            <constraint firstAttribute="height" constant="110" id="Zbu-lw-Psq"/>
+                                            <constraint firstItem="JgC-XN-FuX" firstAttribute="width" secondItem="3bk-xq-Occ" secondAttribute="width" id="hkG-La-MFv"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正常播放" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5i-tx-LKl">
+                                        <rect key="frame" x="161" y="23" width="53.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9j-kV-4Bh">
+                                        <rect key="frame" x="0.0" y="163" width="375" height="54"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRF-Wj-aIy">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="54"/>
+                                                <state key="normal" title="导出视频"/>
+                                                <connections>
+                                                    <action selector="outputVideo:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="wso-BN-Das"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQS-wM-UEN">
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="54"/>
+                                                <state key="normal" title="重新开始"/>
+                                                <connections>
+                                                    <action selector="restartRecordButton:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="b9J-Yw-CIj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="UQS-wM-UEN" firstAttribute="width" secondItem="oRF-Wj-aIy" secondAttribute="width" id="B18-Lx-jBD"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="I9j-kV-4Bh" firstAttribute="leading" secondItem="WfU-R6-y9Y" secondAttribute="leading" id="2fT-ZM-cVE"/>
+                                    <constraint firstAttribute="bottom" secondItem="I9j-kV-4Bh" secondAttribute="bottom" id="Ntm-PE-wNV"/>
+                                    <constraint firstItem="VmJ-wM-iq1" firstAttribute="top" secondItem="T5i-tx-LKl" secondAttribute="bottom" constant="14" id="R0d-K1-fAC"/>
+                                    <constraint firstItem="I9j-kV-4Bh" firstAttribute="top" secondItem="VmJ-wM-iq1" secondAttribute="bottom" id="ULt-l7-hIW"/>
+                                    <constraint firstAttribute="trailing" secondItem="dAh-QR-Ngv" secondAttribute="trailing" id="aCz-ix-93I"/>
+                                    <constraint firstItem="dAh-QR-Ngv" firstAttribute="top" secondItem="WfU-R6-y9Y" secondAttribute="top" constant="53" id="nel-xO-IKa"/>
+                                    <constraint firstAttribute="trailing" secondItem="I9j-kV-4Bh" secondAttribute="trailing" id="qpi-M2-J0F"/>
+                                    <constraint firstItem="dAh-QR-Ngv" firstAttribute="leading" secondItem="WfU-R6-y9Y" secondAttribute="leading" id="tWQ-Yy-Qyc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="x3w-1d-gzx" secondAttribute="trailing" id="5VW-Wi-N2l"/>
+                            <constraint firstAttribute="trailing" secondItem="WfU-R6-y9Y" secondAttribute="trailing" id="Ar5-Xe-pqO"/>
+                            <constraint firstItem="WfU-R6-y9Y" firstAttribute="leading" secondItem="GfQ-Qj-e1U" secondAttribute="leading" id="GVS-N9-kC1"/>
+                            <constraint firstItem="WfU-R6-y9Y" firstAttribute="top" secondItem="x3w-1d-gzx" secondAttribute="bottom" constant="30" id="H3p-7s-Qfj"/>
+                            <constraint firstItem="T5i-tx-LKl" firstAttribute="centerX" secondItem="GfQ-Qj-e1U" secondAttribute="centerX" id="cEx-Vy-iL4"/>
+                            <constraint firstItem="piq-Iz-VXY" firstAttribute="top" secondItem="WfU-R6-y9Y" secondAttribute="bottom" id="kQe-gb-gzo"/>
+                            <constraint firstItem="x3w-1d-gzx" firstAttribute="leading" secondItem="GfQ-Qj-e1U" secondAttribute="leading" id="ngV-VR-0xv"/>
+                            <constraint firstItem="x3w-1d-gzx" firstAttribute="top" secondItem="GfQ-Qj-e1U" secondAttribute="top" constant="20" id="sNn-m7-BdY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="H73-Ap-Lhi"/>
+                    <connections>
+                        <outlet property="forwardButton" destination="3bk-xq-Occ" id="dKo-Qc-4zt"/>
+                        <outlet property="nextButton" destination="JgC-XN-FuX" id="cHr-Fh-QhV"/>
+                        <outlet property="outputResultVideo" destination="oRF-Wj-aIy" id="Ujl-WR-sjn"/>
+                        <outlet property="recordState" destination="T5i-tx-LKl" id="MnZ-kn-oCx"/>
+                        <outlet property="restartRecord" destination="UQS-wM-UEN" id="bmx-fW-Nwu"/>
+                        <outlet property="videoview" destination="x3w-1d-gzx" id="QUe-MM-be6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XMA-4s-tV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-263.19999999999999" y="-151.57421289355324"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="60N-zU-KPV">
+            <objects>
+                <navigationController id="fc5-xH-2eE" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LKi-HC-n8z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XRj-sh-2Jt" kind="relationship" relationship="rootViewController" id="s07-uG-qcr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zuY-e5-MxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1114" y="-151"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilf-xX-cJA">
+                                <rect key="frame" x="147.5" y="318.5" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="ICf-Xn-HTw"/>
+                                </constraints>
+                                <state key="normal" title="录像"/>
+                                <connections>
+                                    <action selector="captureVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wu0-oO-HP3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNb-4z-vRP">
+                                <rect key="frame" x="156" y="226" width="62" height="30"/>
+                                <state key="normal" title="播放音频"/>
+                                <connections>
+                                    <action selector="playAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cSf-yg-q6L"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ilf-xX-cJA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DQb-oL-WmX"/>
+                            <constraint firstItem="ilf-xX-cJA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="GWj-vI-qUF"/>
+                            <constraint firstItem="ilf-xX-cJA" firstAttribute="top" secondItem="WNb-4z-vRP" secondAttribute="bottom" constant="62.5" id="no7-72-lIr"/>
+                            <constraint firstItem="WNb-4z-vRP" firstAttribute="centerX" secondItem="ilf-xX-cJA" secondAttribute="centerX" id="qED-QQ-HoB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-263" y="615"/>
+        </scene>
+    </scenes>
+</document>
