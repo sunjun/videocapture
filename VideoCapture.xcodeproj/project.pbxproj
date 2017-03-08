@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05B38D563FDE85B97EA0F22A /* libPods-VideoCapture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D83734416B20C5F6BB8BDFB8 /* libPods-VideoCapture.a */; };
 		7B18370A1E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 7B1837081E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg */; };
 		7B18370B1E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7B1837091E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a */; };
 		7BC226B51E6C4138009DAAE9 /* 60second.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7BC226B21E6C4138009DAAE9 /* 60second.m4a */; };
@@ -29,14 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F60BBFE1895F244160C438D /* Pods-VideoCapture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoCapture.release.xcconfig"; path = "Pods/Target Support Files/Pods-VideoCapture/Pods-VideoCapture.release.xcconfig"; sourceTree = "<group>"; };
-		22B58CB4A37E54141D67D979 /* Pods-VideoCapture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VideoCapture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VideoCapture/Pods-VideoCapture.debug.xcconfig"; sourceTree = "<group>"; };
 		7B1837081E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "[Schumann_Oboe_Romances]Official.cfg"; sourceTree = "<group>"; };
 		7B1837091E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Schumann_Oboe_Romances.m4a; sourceTree = "<group>"; };
 		7BC226B21E6C4138009DAAE9 /* 60second.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 60second.m4a; sourceTree = "<group>"; };
 		7BC226B31E6C4138009DAAE9 /* song_test_20.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = song_test_20.m4a; sourceTree = "<group>"; };
 		7BC226B41E6C4138009DAAE9 /* song_test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = song_test.m4a; sourceTree = "<group>"; };
-		D83734416B20C5F6BB8BDFB8 /* libPods-VideoCapture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VideoCapture.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F557B0611E6BC58900A756D8 /* audio.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = audio.cfg; path = VideoCapture/audio.cfg; sourceTree = SOURCE_ROOT; };
 		F557B0641E6BC99500A756D8 /* MXAudioSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXAudioSegment.h; sourceTree = "<group>"; };
 		F557B0651E6BC99500A756D8 /* MXAudioSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXAudioSegment.m; sourceTree = "<group>"; };
@@ -66,22 +62,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5C3C95E1E65C2A8002EFD33 /* MobileCoreServices.framework in Frameworks */,
-				05B38D563FDE85B97EA0F22A /* libPods-VideoCapture.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CE29B984AE98761198A141BE /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				22B58CB4A37E54141D67D979 /* Pods-VideoCapture.debug.xcconfig */,
-				1F60BBFE1895F244160C438D /* Pods-VideoCapture.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F557B0631E6BC97F00A756D8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				F5C3C95D1E65C2A8002EFD33 /* MobileCoreServices.framework */,
-				D83734416B20C5F6BB8BDFB8 /* libPods-VideoCapture.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -115,7 +100,6 @@
 				F5CF8BB71E65A6CB00DCB52C /* VideoCapture */,
 				F5CF8BB61E65A6CB00DCB52C /* Products */,
 				F5C3C95C1E65C2A8002EFD33 /* Frameworks */,
-				CE29B984AE98761198A141BE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -254,7 +238,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 		284A8D09B0D19120351BCF02 /* [CP] Copy Pods Resources */ = {
@@ -269,7 +253,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoCapture/Pods-VideoCapture-resources.sh\"\n";
+			shellScript = "
+";
 			showEnvVarsInLog = 0;
 		};
 		3A29477AA59BF78DFC63FC7A /* [CP] Embed Pods Frameworks */ = {
@@ -284,7 +269,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VideoCapture/Pods-VideoCapture-frameworks.sh\"\n";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -418,7 +403,6 @@
 		};
 		F5CF8BCD1E65A6CB00DCB52C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22B58CB4A37E54141D67D979 /* Pods-VideoCapture.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XUD9S2ZUQB;
@@ -432,7 +416,6 @@
 		};
 		F5CF8BCE1E65A6CB00DCB52C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F60BBFE1895F244160C438D /* Pods-VideoCapture.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XUD9S2ZUQB;
