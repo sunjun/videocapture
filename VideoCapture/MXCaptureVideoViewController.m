@@ -62,9 +62,45 @@
     _recordState.text = @"视频录制停止中";
     _restartRecord.enabled = NO;
     _outputResultVideo.enabled = NO;
+    [self transformCfgFile];
     [self setLoopSongSegment];
     [self playAudio];
 }
+
+- (void)transformCfgFile {
+    NSString* path  = [[NSBundle mainBundle] pathForResource:@"[Schumann_Oboe_Romances]Official" ofType:@"cfg"];
+    
+    //将文件内容读取到字符串中，注意编码NSUTF8StringEncoding 防止乱码，
+    NSString* jsonString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    
+    //将字符串写到缓冲区。
+    NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *jsonError;
+    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&jsonError];
+    
+    NSMutableArray *array=[jsonObject objectForKey:@"red_points"];
+    int j = 1;
+    for (int i = 0; i < [array count]; i++) {
+
+        NSDictionary *dict = [array objectAtIndex:i];
+        NSString *loop_to = [dict objectForKey:@"loop_to"];
+        if (loop_to != nil) {
+            long start = [[dict objectForKey:@"timestamp"] longValue];
+            long end = 0;
+            for (int i = 0; i < [array count]; i++) {
+                NSDictionary *dict = [array objectAtIndex:i];
+                if ([[dict objectForKey:@"uuid"] isEqualToString:loop_to]) {
+                    end = [[dict objectForKey:@"timestamp"] longValue];
+                }
+            }
+            NSLog(@"%d %ld %ld", j, start/1000, end/1000);
+            j++;
+        }
+    }
+    
+}
+
 //读配置文件
 - (void) setLoopSongSegment {
     _audioSegments = [[NSMutableArray alloc] initWithCapacity:0];
@@ -464,7 +500,7 @@
 - (void)playAudio {
     
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *path = [NSString stringWithFormat:@"%@/song_test_20.m4a", resourcePath];
+    NSString *path = [NSString stringWithFormat:@"%@/Schumann_Oboe_Romances.m4a", resourcePath];
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     
