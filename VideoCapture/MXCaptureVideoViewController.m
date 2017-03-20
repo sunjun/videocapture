@@ -62,7 +62,7 @@
     _recordState.text = @"视频录制停止中";
     _restartRecord.enabled = NO;
     _outputResultVideo.enabled = NO;
-    [self transformCfgFile];
+//    [self transformCfgFile];
     [self setLoopSongSegment];
     [self playAudio];
 }
@@ -500,7 +500,7 @@
 - (void)playAudio {
     
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *path = [NSString stringWithFormat:@"%@/Schumann_Oboe_Romances.m4a", resourcePath];
+    NSString *path = [NSString stringWithFormat:@"%@/song_test_20.m4a", resourcePath];
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
     
@@ -512,7 +512,7 @@
     _audioSegment = [_audioSegments objectAtIndex:0];
     _audioTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
 //        NSLog(@"%f",_audioPlayer.currentTime);
-        if(fabs(_audioPlayer.duration - _audioPlayer.currentTime) < 0.1) {
+        if(fabs(_audioPlayer.duration - _audioPlayer.currentTime) < 0.8) {
             [timer invalidate];
             self.recordState.text = @"整个播放完毕，请导出视频！";
             self.forwardButton.enabled = NO;
@@ -589,7 +589,95 @@
 }
 
 - (IBAction)outputVideo:(id)sender {
-    //
+    
+    //混合音频和视频
+    AVMutableComposition *composition = [AVMutableComposition composition];
+    
+    
+    //音频
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString *path = [NSString stringWithFormat:@"%@/song_test_20.m4a", resourcePath];
+
+    AVAsset *audioAsset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
+    AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    
+    for (MXAudioSegment *segment in _audioSegments)
+    {
+        NSRange audioSnap = NSMakeRange(segment.startLoop, segment.endLoop - segment.startLoop);
+        //开始位置startTime
+        CMTime startTime = CMTimeMakeWithSeconds(audioSnap.location, audioAsset.duration.timescale);
+        //截取长度
+        CMTime audioDuration = CMTimeMakeWithSeconds(audioSnap.length, audioAsset.duration.timescale);
+        CMTimeRange audioSnapRange = CMTimeRangeMake(startTime, audioDuration);
+        [audioTrack insertTimeRange:audioSnapRange ofTrack:[audioAsset tracksWithMediaType:AVMediaTypeAudio][0] atTime:kCMTimeZero error:nil];
+    }
+    
+    //视频
+     AVMutableCompositionTrack *videoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+    for (NSUInteger i = 0; i < [_audioSegments count]; i++)
+    {
+        NSURL *videoURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%lu.mov",(unsigned long)i]]];
+        NSLog(@"%@",[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%lu.mov",(unsigned long)i]]);
+        AVAsset *videoAsset = [AVAsset assetWithURL:videoURL];
+        CMTimeRange videoSnapRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
+        [videoTrack insertTimeRange:videoSnapRange ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo][0] atTime:kCMTimeZero error:nil];
+    }
+    
+    
+    //导出
+    //AVAssetExportSession用于合并文件，导出合并后文件，presetName文件的输出类型
+    AVAssetExportSession *assetExportSession = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetPassthrough];
+    
+    NSString *outPutPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"ok.mov"];
+    //混合后的视频输出路径
+    NSURL *compositionURLPath = [NSURL fileURLWithPath:outPutPath];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:outPutPath])
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:outPutPath error:nil];
+    }
+    
+    //输出视频格式 AVFileTypeMPEG4 AVFileTypeQuickTimeMovie...
+    assetExportSession.outputFileType = AVFileTypeQuickTimeMovie;
+    //    NSArray *fileTypes = assetExportSession.
+    
+    assetExportSession.outputURL = compositionURLPath;
+    //输出文件是否网络优化
+    assetExportSession.shouldOptimizeForNetworkUse = YES;
+    
+    [assetExportSession exportAsynchronouslyWithCompletionHandler:^(void){
+        switch (assetExportSession.status) {
+            case AVAssetExportSessionStatusCompleted:
+            {
+                __block PHObjectPlaceholder *placeholder;
+                
+                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                    PHAssetChangeRequest* createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:assetExportSession.outputURL];
+                    placeholder = [createAssetRequest placeholderForCreatedAsset];
+                    
+                } completionHandler:^(BOOL success, NSError *error) {
+                    if (success)
+                    {
+                        NSLog(@"didFinishRecordingToOutputFileAtURLs");
+                    }
+                    else
+                    {
+                        NSLog(@"%@", error);
+                    }
+                }];
+            }
+                break;
+            case AVAssetExportSessionStatusFailed:
+                NSLog(@"Failed:%@",_exportSession.error);
+                break;
+            case AVAssetExportSessionStatusCancelled:
+                NSLog(@"Canceled:%@",_exportSession.error);
+                break;
+            default:
+                break;
+        }
+    }];
+
 }
 - (IBAction)restartRecordButton:(id)sender {
     [self setup];
