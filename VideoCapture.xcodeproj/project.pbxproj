@@ -19,6 +19,7 @@
 		F5C3C9631E671561002EFD33 /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5C3C9621E671561002EFD33 /* song.mp3 */; };
 		F5C3C9681E6A6A45002EFD33 /* MXCaptureOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C3C9671E6A6A45002EFD33 /* MXCaptureOverlayView.m */; };
 		F5C3C96B1E6BAB21002EFD33 /* MXCaptureVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C3C96A1E6BAB21002EFD33 /* MXCaptureVideoViewController.m */; };
+		F5CD956D1E816C11003CDB8A /* MXPlayVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CD956C1E816C11003CDB8A /* MXPlayVideoViewController.m */; };
 		F5CF8BBA1E65A6CB00DCB52C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BB91E65A6CB00DCB52C /* main.m */; };
 		F5CF8BBD1E65A6CB00DCB52C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BBC1E65A6CB00DCB52C /* AppDelegate.m */; };
 		F5CF8BC01E65A6CB00DCB52C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BBF1E65A6CB00DCB52C /* ViewController.m */; };
@@ -44,6 +45,8 @@
 		F5C3C9671E6A6A45002EFD33 /* MXCaptureOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXCaptureOverlayView.m; sourceTree = "<group>"; };
 		F5C3C9691E6BAB21002EFD33 /* MXCaptureVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXCaptureVideoViewController.h; sourceTree = "<group>"; };
 		F5C3C96A1E6BAB21002EFD33 /* MXCaptureVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXCaptureVideoViewController.m; sourceTree = "<group>"; };
+		F5CD956B1E816C11003CDB8A /* MXPlayVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPlayVideoViewController.h; sourceTree = "<group>"; };
+		F5CD956C1E816C11003CDB8A /* MXPlayVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPlayVideoViewController.m; sourceTree = "<group>"; };
 		F5CF8BB51E65A6CB00DCB52C /* VideoCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5CF8BB91E65A6CB00DCB52C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F5CF8BBB1E65A6CB00DCB52C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				F5C3C9601E6709BB002EFD33 /* MXFilePathManager.m */,
 				F5C3C9691E6BAB21002EFD33 /* MXCaptureVideoViewController.h */,
 				F5C3C96A1E6BAB21002EFD33 /* MXCaptureVideoViewController.m */,
+				F5CD956B1E816C11003CDB8A /* MXPlayVideoViewController.h */,
+				F5CD956C1E816C11003CDB8A /* MXPlayVideoViewController.m */,
 			);
 			path = VideoCapture;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				F5C3C9611E6709BB002EFD33 /* MXFilePathManager.m in Sources */,
 				F557B0661E6BC99500A756D8 /* MXAudioSegment.m in Sources */,
 				F5C3C9681E6A6A45002EFD33 /* MXCaptureOverlayView.m in Sources */,
+				F5CD956D1E816C11003CDB8A /* MXPlayVideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

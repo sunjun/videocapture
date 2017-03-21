@@ -71,7 +71,7 @@ static int current = 0;
     _outputResultVideo.enabled = NO;
 //    [self transformCfgFile];
     [self setLoopSongSegment];
-    [self playAudio];
+//    [self playAudio];
 }
 
 - (void)transformCfgFile {
@@ -439,7 +439,7 @@ static int current = 0;
     _audioSegment = [_audioSegments objectAtIndex:0];
     _audioTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
 
-        if(fabs(_audioPlayer.duration - _audioPlayer.currentTime) < 0.8) {
+        if(_audioPlayer.duration >= _audioPlayer.currentTime) {
             [timer invalidate];
             self.recordState.text = @"整个播放完毕，请导出视频！";
             self.forwardButton.enabled = NO;
@@ -626,6 +626,11 @@ static int current = 0;
 + (CGFloat)getVideoMediaDuration:(AVURLAsset *)asset {
     CMTime duration = [asset duration];
     return duration.value / duration.timescale;
+}
+- (IBAction)playAudioEvent:(id)sender {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"playviewcontroller"];
+    [self.navigationController pushViewController:viewController   animated:NO];
 }
 
 @end
