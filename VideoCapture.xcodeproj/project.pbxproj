@@ -182,7 +182,7 @@
 				TargetAttributes = {
 					F5CF8BB41E65A6CB00DCB52C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = XUD9S2ZUQB;
+						DevelopmentTeam = 3HKRV44T78;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -405,11 +405,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XUD9S2ZUQB;
+				DEVELOPMENT_TEAM = 3HKRV44T78;
 				INFOPLIST_FILE = VideoCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sunjun.video;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.dong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -418,11 +418,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XUD9S2ZUQB;
+				DEVELOPMENT_TEAM = 3HKRV44T78;
 				INFOPLIST_FILE = VideoCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sunjun.video;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.dong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
