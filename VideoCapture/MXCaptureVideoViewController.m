@@ -12,6 +12,9 @@
 #import <Photos/Photos.h>
 #import "MXFilePathManager.h"
 
+
+static int current = 0;
+
 @interface MXCaptureVideoViewController ()<AVCaptureFileOutputRecordingDelegate, AVAudioPlayerDelegate>
 {
     AVCaptureSession *_captureSession;
@@ -31,6 +34,9 @@
     AVAssetExportSession *_exportSession;
     BOOL _needSave;
 }
+
+
+
 @property (weak, nonatomic) IBOutlet UIView *videoview;
 @property (weak, nonatomic) IBOutlet UILabel *recordState;
 @property (weak, nonatomic) IBOutlet UIButton *forwardButton;
@@ -56,6 +62,7 @@
 
 - (void)setup {
     looping = 0;
+    current = 0;
     _forwardButton.enabled = NO;
     _nextButton.enabled = YES;
     _isInLoop = NO;
@@ -333,7 +340,6 @@
         return;
     }
     
-    static int current = 0;
     // Step 1
     // Create an outputURL to which the exported movie will be saved
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -432,7 +438,7 @@
 
     _audioSegment = [_audioSegments objectAtIndex:0];
     _audioTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        NSLog(@"%f",_audioPlayer.currentTime);
+
         if(fabs(_audioPlayer.duration - _audioPlayer.currentTime) < 0.8) {
             [timer invalidate];
             self.recordState.text = @"整个播放完毕，请导出视频！";
@@ -445,7 +451,7 @@
         
         if(fabs(_audioPlayer.currentTime - _audioSegment.startLoop) < 0.1 && !_isInLoop) {
             _isInLoop = YES;
-            self.recordState.text = [NSString stringWithFormat:@"第%d个段落 视频录制中",looping+1];
+            self.recordState.text = [NSString stringWithFormat:@"第%lu个段落 视频录制中",looping+1];
             [self startRecordVideo];
         }
 
@@ -541,7 +547,7 @@
     {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *videoPath = paths[0];
-        videoPath = [videoPath stringByAppendingPathComponent:[NSString stringWithFormat:@"mx_%d.mov",i]];
+        videoPath = [videoPath stringByAppendingPathComponent:[NSString stringWithFormat:@"mx_%lu.mov",i]];
         
         NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
         NSDictionary *optDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
@@ -552,6 +558,9 @@
         [videoTrack insertTimeRange:videoSnapRange ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo][0] atTime:kCMTimeZero error:nil];
     }
     
+    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(M_PI_2);
+    //    CGAffineTransform rotateTranslate = CGAffineTransformTranslate(rotationTransform,360,0);
+    videoTrack.preferredTransform = rotationTransform;
     
     //导出
     //AVAssetExportSession用于合并文件，导出合并后文件，presetName文件的输出类型
@@ -568,12 +577,9 @@
     
     //输出视频格式 AVFileTypeMPEG4 AVFileTypeQuickTimeMovie...
     assetExportSession.outputFileType = AVFileTypeQuickTimeMovie;
-    //    NSArray *fileTypes = assetExportSession.
-    
     assetExportSession.outputURL = compositionURLPath;
-    //输出文件是否网络优化
-    assetExportSession.shouldOptimizeForNetworkUse = YES;
-    
+
+ 
     
     [assetExportSession exportAsynchronouslyWithCompletionHandler:^(void){
         switch (assetExportSession.status) {
@@ -588,9 +594,11 @@
                 } completionHandler:^(BOOL success, NSError *error) {
                     if (success)
                     {
-                        _recordState.text = @"导出成功，请去相册查看";
-                        _nextButton.enabled = YES;
-                        _forwardButton.enabled = NO;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            _recordState.text = @"导出成功，请去相册查看";
+                            _nextButton.enabled = YES;
+                            _forwardButton.enabled = NO;
+                        });
                     }
                     else
                     {
