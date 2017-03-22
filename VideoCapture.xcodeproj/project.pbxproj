@@ -7,56 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B18370A1E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 7B1837081E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg */; };
-		7B18370B1E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7B1837091E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a */; };
-		7BC226B51E6C4138009DAAE9 /* 60second.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7BC226B21E6C4138009DAAE9 /* 60second.m4a */; };
-		7BC226B61E6C4138009DAAE9 /* song_test_20.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7BC226B31E6C4138009DAAE9 /* song_test_20.m4a */; };
-		7BC226B71E6C4138009DAAE9 /* song_test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7BC226B41E6C4138009DAAE9 /* song_test.m4a */; };
-		F557B0621E6BC58900A756D8 /* audio.cfg in Resources */ = {isa = PBXBuildFile; fileRef = F557B0611E6BC58900A756D8 /* audio.cfg */; };
-		F557B0661E6BC99500A756D8 /* MXAudioSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = F557B0651E6BC99500A756D8 /* MXAudioSegment.m */; };
 		F5C3C95E1E65C2A8002EFD33 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C3C95D1E65C2A8002EFD33 /* MobileCoreServices.framework */; };
-		F5C3C9611E6709BB002EFD33 /* MXFilePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C3C9601E6709BB002EFD33 /* MXFilePathManager.m */; };
-		F5C3C9631E671561002EFD33 /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5C3C9621E671561002EFD33 /* song.mp3 */; };
-		F5C3C9681E6A6A45002EFD33 /* MXCaptureOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C3C9671E6A6A45002EFD33 /* MXCaptureOverlayView.m */; };
-		F5C3C96B1E6BAB21002EFD33 /* MXCaptureVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C3C96A1E6BAB21002EFD33 /* MXCaptureVideoViewController.m */; };
-		F5CD956D1E816C11003CDB8A /* MXPlayVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CD956C1E816C11003CDB8A /* MXPlayVideoViewController.m */; };
 		F5CF8BBA1E65A6CB00DCB52C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BB91E65A6CB00DCB52C /* main.m */; };
 		F5CF8BBD1E65A6CB00DCB52C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BBC1E65A6CB00DCB52C /* AppDelegate.m */; };
-		F5CF8BC01E65A6CB00DCB52C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BBF1E65A6CB00DCB52C /* ViewController.m */; };
 		F5CF8BC31E65A6CB00DCB52C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5CF8BC11E65A6CB00DCB52C /* Main.storyboard */; };
 		F5CF8BC51E65A6CB00DCB52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5CF8BC41E65A6CB00DCB52C /* Assets.xcassets */; };
 		F5CF8BC81E65A6CB00DCB52C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5CF8BC61E65A6CB00DCB52C /* LaunchScreen.storyboard */; };
+		F5ECCA551E82BAC500EC1071 /* audio.cfg in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCA4E1E82BAC500EC1071 /* audio.cfg */; };
+		F5ECCA561E82BAC500EC1071 /* [Schumann_Oboe_Romances]Official.cfg in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCA4F1E82BAC500EC1071 /* [Schumann_Oboe_Romances]Official.cfg */; };
+		F5ECCA571E82BAC500EC1071 /* 60second.m4a in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCA501E82BAC500EC1071 /* 60second.m4a */; };
+		F5ECCA581E82BAC500EC1071 /* Schumann_Oboe_Romances.m4a in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCA511E82BAC500EC1071 /* Schumann_Oboe_Romances.m4a */; };
+		F5ECCA591E82BAC500EC1071 /* song_test_20.m4a in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCA521E82BAC500EC1071 /* song_test_20.m4a */; };
+		F5ECCA5A1E82BAC500EC1071 /* song_test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCA531E82BAC500EC1071 /* song_test.m4a */; };
+		F5ECCA5B1E82BAC500EC1071 /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCA541E82BAC500EC1071 /* song.mp3 */; };
+		F5ECCA5F1E82BAFE00EC1071 /* MXFilePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCA5E1E82BAFE00EC1071 /* MXFilePathManager.m */; };
+		F5ECCA671E82BB0500EC1071 /* MXCaptureVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCA621E82BB0500EC1071 /* MXCaptureVideoViewController.m */; };
+		F5ECCA681E82BB0500EC1071 /* MXPlayVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCA641E82BB0500EC1071 /* MXPlayVideoViewController.m */; };
+		F5ECCA691E82BB0500EC1071 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCA661E82BB0500EC1071 /* ViewController.m */; };
+		F5ECCA6D1E82BB2800EC1071 /* MXAudioSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ECCA6C1E82BB2800EC1071 /* MXAudioSegment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7B1837081E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "[Schumann_Oboe_Romances]Official.cfg"; sourceTree = "<group>"; };
-		7B1837091E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Schumann_Oboe_Romances.m4a; sourceTree = "<group>"; };
-		7BC226B21E6C4138009DAAE9 /* 60second.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 60second.m4a; sourceTree = "<group>"; };
-		7BC226B31E6C4138009DAAE9 /* song_test_20.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = song_test_20.m4a; sourceTree = "<group>"; };
-		7BC226B41E6C4138009DAAE9 /* song_test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = song_test.m4a; sourceTree = "<group>"; };
-		F557B0611E6BC58900A756D8 /* audio.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = audio.cfg; path = VideoCapture/audio.cfg; sourceTree = SOURCE_ROOT; };
-		F557B0641E6BC99500A756D8 /* MXAudioSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXAudioSegment.h; sourceTree = "<group>"; };
-		F557B0651E6BC99500A756D8 /* MXAudioSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXAudioSegment.m; sourceTree = "<group>"; };
 		F5C3C95D1E65C2A8002EFD33 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		F5C3C95F1E6709BB002EFD33 /* MXFilePathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXFilePathManager.h; sourceTree = "<group>"; };
-		F5C3C9601E6709BB002EFD33 /* MXFilePathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXFilePathManager.m; sourceTree = "<group>"; };
-		F5C3C9621E671561002EFD33 /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
-		F5C3C9661E6A6A45002EFD33 /* MXCaptureOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXCaptureOverlayView.h; sourceTree = "<group>"; };
-		F5C3C9671E6A6A45002EFD33 /* MXCaptureOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXCaptureOverlayView.m; sourceTree = "<group>"; };
-		F5C3C9691E6BAB21002EFD33 /* MXCaptureVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXCaptureVideoViewController.h; sourceTree = "<group>"; };
-		F5C3C96A1E6BAB21002EFD33 /* MXCaptureVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXCaptureVideoViewController.m; sourceTree = "<group>"; };
-		F5CD956B1E816C11003CDB8A /* MXPlayVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPlayVideoViewController.h; sourceTree = "<group>"; };
-		F5CD956C1E816C11003CDB8A /* MXPlayVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPlayVideoViewController.m; sourceTree = "<group>"; };
 		F5CF8BB51E65A6CB00DCB52C /* VideoCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5CF8BB91E65A6CB00DCB52C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F5CF8BBB1E65A6CB00DCB52C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F5CF8BBC1E65A6CB00DCB52C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F5CF8BBE1E65A6CB00DCB52C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F5CF8BBF1E65A6CB00DCB52C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F5CF8BC21E65A6CB00DCB52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5CF8BC41E65A6CB00DCB52C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5CF8BC71E65A6CB00DCB52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5CF8BC91E65A6CB00DCB52C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5ECCA4E1E82BAC500EC1071 /* audio.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = audio.cfg; path = Resource/audio.cfg; sourceTree = "<group>"; };
+		F5ECCA4F1E82BAC500EC1071 /* [Schumann_Oboe_Romances]Official.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "[Schumann_Oboe_Romances]Official.cfg"; path = "Resource/[Schumann_Oboe_Romances]Official.cfg"; sourceTree = "<group>"; };
+		F5ECCA501E82BAC500EC1071 /* 60second.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 60second.m4a; path = Resource/60second.m4a; sourceTree = "<group>"; };
+		F5ECCA511E82BAC500EC1071 /* Schumann_Oboe_Romances.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = Schumann_Oboe_Romances.m4a; path = Resource/Schumann_Oboe_Romances.m4a; sourceTree = "<group>"; };
+		F5ECCA521E82BAC500EC1071 /* song_test_20.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = song_test_20.m4a; path = Resource/song_test_20.m4a; sourceTree = "<group>"; };
+		F5ECCA531E82BAC500EC1071 /* song_test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = song_test.m4a; path = Resource/song_test.m4a; sourceTree = "<group>"; };
+		F5ECCA541E82BAC500EC1071 /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = song.mp3; path = Resource/song.mp3; sourceTree = "<group>"; };
+		F5ECCA5D1E82BAFE00EC1071 /* MXFilePathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXFilePathManager.h; sourceTree = "<group>"; };
+		F5ECCA5E1E82BAFE00EC1071 /* MXFilePathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXFilePathManager.m; sourceTree = "<group>"; };
+		F5ECCA611E82BB0500EC1071 /* MXCaptureVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXCaptureVideoViewController.h; sourceTree = "<group>"; };
+		F5ECCA621E82BB0500EC1071 /* MXCaptureVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXCaptureVideoViewController.m; sourceTree = "<group>"; };
+		F5ECCA631E82BB0500EC1071 /* MXPlayVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPlayVideoViewController.h; sourceTree = "<group>"; };
+		F5ECCA641E82BB0500EC1071 /* MXPlayVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPlayVideoViewController.m; sourceTree = "<group>"; };
+		F5ECCA651E82BB0500EC1071 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F5ECCA661E82BB0500EC1071 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F5ECCA6B1E82BB2800EC1071 /* MXAudioSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXAudioSegment.h; sourceTree = "<group>"; };
+		F5ECCA6C1E82BB2800EC1071 /* MXAudioSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXAudioSegment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,15 +68,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F557B0631E6BC97F00A756D8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F557B0641E6BC99500A756D8 /* MXAudioSegment.h */,
-				F557B0651E6BC99500A756D8 /* MXAudioSegment.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		F5C3C95C1E65C2A8002EFD33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,13 +76,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F5C3C9651E6A6A25002EFD33 /* View */ = {
+		F5CD956E1E82BA0F003CDB8A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				F5C3C9661E6A6A45002EFD33 /* MXCaptureOverlayView.h */,
-				F5C3C9671E6A6A45002EFD33 /* MXCaptureOverlayView.m */,
+				F5ECCA4E1E82BAC500EC1071 /* audio.cfg */,
+				F5ECCA4F1E82BAC500EC1071 /* [Schumann_Oboe_Romances]Official.cfg */,
+				F5ECCA501E82BAC500EC1071 /* 60second.m4a */,
+				F5ECCA511E82BAC500EC1071 /* Schumann_Oboe_Romances.m4a */,
+				F5ECCA521E82BAC500EC1071 /* song_test_20.m4a */,
+				F5ECCA531E82BAC500EC1071 /* song_test.m4a */,
+				F5ECCA541E82BAC500EC1071 /* song.mp3 */,
 			);
-			path = View;
+			name = Resource;
 			sourceTree = "<group>";
 		};
 		F5CF8BAC1E65A6CB00DCB52C = {
@@ -117,30 +110,17 @@
 		F5CF8BB71E65A6CB00DCB52C /* VideoCapture */ = {
 			isa = PBXGroup;
 			children = (
-				7B1837081E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg */,
-				7B1837091E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a */,
-				7BC226B21E6C4138009DAAE9 /* 60second.m4a */,
-				7BC226B31E6C4138009DAAE9 /* song_test_20.m4a */,
-				7BC226B41E6C4138009DAAE9 /* song_test.m4a */,
-				F557B0631E6BC97F00A756D8 /* Model */,
-				F5C3C9651E6A6A25002EFD33 /* View */,
-				F5C3C9621E671561002EFD33 /* song.mp3 */,
-				F557B0611E6BC58900A756D8 /* audio.cfg */,
+				F5ECCA6A1E82BB2800EC1071 /* Model */,
+				F5ECCA601E82BB0500EC1071 /* ViewController */,
+				F5ECCA5C1E82BAFE00EC1071 /* Util */,
+				F5CD956E1E82BA0F003CDB8A /* Resource */,
 				F5CF8BBB1E65A6CB00DCB52C /* AppDelegate.h */,
 				F5CF8BBC1E65A6CB00DCB52C /* AppDelegate.m */,
-				F5CF8BBE1E65A6CB00DCB52C /* ViewController.h */,
-				F5CF8BBF1E65A6CB00DCB52C /* ViewController.m */,
 				F5CF8BC11E65A6CB00DCB52C /* Main.storyboard */,
 				F5CF8BC41E65A6CB00DCB52C /* Assets.xcassets */,
 				F5CF8BC61E65A6CB00DCB52C /* LaunchScreen.storyboard */,
 				F5CF8BC91E65A6CB00DCB52C /* Info.plist */,
 				F5CF8BB81E65A6CB00DCB52C /* Supporting Files */,
-				F5C3C95F1E6709BB002EFD33 /* MXFilePathManager.h */,
-				F5C3C9601E6709BB002EFD33 /* MXFilePathManager.m */,
-				F5C3C9691E6BAB21002EFD33 /* MXCaptureVideoViewController.h */,
-				F5C3C96A1E6BAB21002EFD33 /* MXCaptureVideoViewController.m */,
-				F5CD956B1E816C11003CDB8A /* MXPlayVideoViewController.h */,
-				F5CD956C1E816C11003CDB8A /* MXPlayVideoViewController.m */,
 			);
 			path = VideoCapture;
 			sourceTree = "<group>";
@@ -151,6 +131,37 @@
 				F5CF8BB91E65A6CB00DCB52C /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F5ECCA5C1E82BAFE00EC1071 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F5ECCA5D1E82BAFE00EC1071 /* MXFilePathManager.h */,
+				F5ECCA5E1E82BAFE00EC1071 /* MXFilePathManager.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		F5ECCA601E82BB0500EC1071 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F5ECCA611E82BB0500EC1071 /* MXCaptureVideoViewController.h */,
+				F5ECCA621E82BB0500EC1071 /* MXCaptureVideoViewController.m */,
+				F5ECCA631E82BB0500EC1071 /* MXPlayVideoViewController.h */,
+				F5ECCA641E82BB0500EC1071 /* MXPlayVideoViewController.m */,
+				F5ECCA651E82BB0500EC1071 /* ViewController.h */,
+				F5ECCA661E82BB0500EC1071 /* ViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F5ECCA6A1E82BB2800EC1071 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5ECCA6B1E82BB2800EC1071 /* MXAudioSegment.h */,
+				F5ECCA6C1E82BB2800EC1071 /* MXAudioSegment.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,16 +226,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F557B0621E6BC58900A756D8 /* audio.cfg in Resources */,
-				7BC226B71E6C4138009DAAE9 /* song_test.m4a in Resources */,
-				7BC226B61E6C4138009DAAE9 /* song_test_20.m4a in Resources */,
-				7BC226B51E6C4138009DAAE9 /* 60second.m4a in Resources */,
+				F5ECCA581E82BAC500EC1071 /* Schumann_Oboe_Romances.m4a in Resources */,
+				F5ECCA5A1E82BAC500EC1071 /* song_test.m4a in Resources */,
 				F5CF8BC81E65A6CB00DCB52C /* LaunchScreen.storyboard in Resources */,
-				7B18370A1E702FFB00AC9A1B /* [Schumann_Oboe_Romances]Official.cfg in Resources */,
-				F5C3C9631E671561002EFD33 /* song.mp3 in Resources */,
+				F5ECCA591E82BAC500EC1071 /* song_test_20.m4a in Resources */,
+				F5ECCA571E82BAC500EC1071 /* 60second.m4a in Resources */,
+				F5ECCA5B1E82BAC500EC1071 /* song.mp3 in Resources */,
 				F5CF8BC51E65A6CB00DCB52C /* Assets.xcassets in Resources */,
-				7B18370B1E702FFB00AC9A1B /* Schumann_Oboe_Romances.m4a in Resources */,
+				F5ECCA551E82BAC500EC1071 /* audio.cfg in Resources */,
 				F5CF8BC31E65A6CB00DCB52C /* Main.storyboard in Resources */,
+				F5ECCA561E82BAC500EC1071 /* [Schumann_Oboe_Romances]Official.cfg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,14 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5C3C96B1E6BAB21002EFD33 /* MXCaptureVideoViewController.m in Sources */,
-				F5CF8BC01E65A6CB00DCB52C /* ViewController.m in Sources */,
+				F5ECCA691E82BB0500EC1071 /* ViewController.m in Sources */,
 				F5CF8BBD1E65A6CB00DCB52C /* AppDelegate.m in Sources */,
+				F5ECCA6D1E82BB2800EC1071 /* MXAudioSegment.m in Sources */,
 				F5CF8BBA1E65A6CB00DCB52C /* main.m in Sources */,
-				F5C3C9611E6709BB002EFD33 /* MXFilePathManager.m in Sources */,
-				F557B0661E6BC99500A756D8 /* MXAudioSegment.m in Sources */,
-				F5C3C9681E6A6A45002EFD33 /* MXCaptureOverlayView.m in Sources */,
-				F5CD956D1E816C11003CDB8A /* MXPlayVideoViewController.m in Sources */,
+				F5ECCA681E82BB0500EC1071 /* MXPlayVideoViewController.m in Sources */,
+				F5ECCA671E82BB0500EC1071 /* MXCaptureVideoViewController.m in Sources */,
+				F5ECCA5F1E82BAFE00EC1071 /* MXFilePathManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
