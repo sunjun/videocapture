@@ -10,4 +10,6 @@
 
 @interface MXPlayVideoViewController : UIViewController
 
+- (void)setUpData:(NSArray *)segments;
+
 @end

@@ -75,7 +75,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhW-pv-Ocs">
                                                 <rect key="frame" x="125" y="0.0" width="125" height="54"/>
-                                                <state key="normal" title="播放音乐"/>
+                                                <state key="normal" title="视频回放"/>
                                                 <connections>
                                                     <action selector="playAudioEvent:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="t8y-K0-t82"/>
                                                 </connections>
@@ -125,6 +125,7 @@
                         <outlet property="nextButton" destination="JgC-XN-FuX" id="cHr-Fh-QhV"/>
                         <outlet property="outputResultVideo" destination="oRF-Wj-aIy" id="Ujl-WR-sjn"/>
                         <outlet property="recordState" destination="T5i-tx-LKl" id="MnZ-kn-oCx"/>
+                        <outlet property="replayVideoButton" destination="FhW-pv-Ocs" id="hsV-8i-8IR"/>
                         <outlet property="restartRecord" destination="UQS-wM-UEN" id="bmx-fW-Nwu"/>
                         <outlet property="videoview" destination="x3w-1d-gzx" id="QUe-MM-be6"/>
                     </connections>

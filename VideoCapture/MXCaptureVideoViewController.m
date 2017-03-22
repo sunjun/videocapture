@@ -11,6 +11,7 @@
 #import "MXAudioSegment.h"
 #import <Photos/Photos.h>
 #import "MXFilePathManager.h"
+#import "MXPlayVideoViewController.h"
 
 
 static int current = 0;
@@ -43,6 +44,7 @@ static int current = 0;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *outputResultVideo;
 @property (weak, nonatomic) IBOutlet UIButton *restartRecord;
+@property (weak, nonatomic) IBOutlet UIButton *replayVideoButton;
 
 @end
 
@@ -51,13 +53,14 @@ static int current = 0;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+  
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.videoview.layer.masksToBounds = YES;
     [self authorization];
     
     [self setup];
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
 }
 
 - (void)setup {
@@ -69,9 +72,10 @@ static int current = 0;
     _recordState.text = @"视频录制停止中";
     _restartRecord.enabled = NO;
     _outputResultVideo.enabled = NO;
+    _replayVideoButton.enabled = NO;
 //    [self transformCfgFile];
     [self setLoopSongSegment];
-//    [self playAudio];
+    [self playAudio];
 }
 
 - (void)transformCfgFile {
@@ -439,19 +443,20 @@ static int current = 0;
     _audioSegment = [_audioSegments objectAtIndex:0];
     _audioTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
 
-        if(_audioPlayer.duration >= _audioPlayer.currentTime) {
+        if(fabs(_audioPlayer.duration - _audioPlayer.currentTime) < 0.8) {
             [timer invalidate];
-            self.recordState.text = @"整个播放完毕，请导出视频！";
-            self.forwardButton.enabled = NO;
-            self.nextButton.enabled = NO;
-            self.restartRecord.enabled = YES;
-            self.outputResultVideo.enabled = YES;
+            _recordState.text = @"整个播放完毕，请导出视频！";
+            _forwardButton.enabled = NO;
+            _nextButton.enabled = NO;
+            _restartRecord.enabled = YES;
+            _outputResultVideo.enabled = YES;
+            _replayVideoButton.enabled = YES;
             return ;
         }
         
         if(fabs(_audioPlayer.currentTime - _audioSegment.startLoop) < 0.1 && !_isInLoop) {
             _isInLoop = YES;
-            self.recordState.text = [NSString stringWithFormat:@"第%lu个段落 视频录制中",looping+1];
+            _recordState.text = [NSString stringWithFormat:@"第%lu个段落 视频录制中",looping+1];
             [self startRecordVideo];
         }
 
@@ -629,7 +634,8 @@ static int current = 0;
 }
 - (IBAction)playAudioEvent:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"playviewcontroller"];
+    MXPlayVideoViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"playviewcontroller"];
+    [viewController setUpData:_audioSegments];
     [self.navigationController pushViewController:viewController   animated:NO];
 }
 
