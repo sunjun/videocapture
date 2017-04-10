@@ -23,6 +23,7 @@ static NSUInteger currentSegIndex = 0;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *videoView;
+@property (nonatomic, retain) AVPlayerLayer *playerLayer;
 
 @end
 
@@ -38,10 +39,10 @@ static NSUInteger currentSegIndex = 0;
     [super viewDidAppear:animated];
     currentSegIndex = 0;
     _videoPlayer = [[AVPlayer alloc] initWithPlayerItem:nil];
-    AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:_videoPlayer];
-    layer.frame = CGRectMake(0, 0, _videoView.bounds.size.width, _videoView.bounds.size.height);
-    [self.view.layer addSublayer:layer];
-    layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_videoPlayer];
+    _playerLayer.frame = CGRectMake(0, 0, _videoView.bounds.size.width, _videoView.bounds.size.height);
+    [self.view.layer addSublayer:_playerLayer];
+    _playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     
     [self playAudio];
 }
@@ -70,14 +71,17 @@ static NSUInteger currentSegIndex = 0;
         static BOOL inLoop = false;
         if ((_audioPlayer.currentTime > _currentSegments.startLoop) && !inLoop) {
             inLoop = true;
+            _playerLayer.hidden = NO;
             [strongSelf playVideo:currentSegIndex];
         }
         else if(_audioPlayer.currentTime > _audioPlayer.duration) {
             inLoop = false;
+            _playerLayer.hidden = YES;
             [_audioTimer invalidate];
         }
         else if(_audioPlayer.currentTime > _currentSegments.endLoop) {
             [strongSelf stopPlayVideo];
+            _playerLayer.hidden = YES;
             currentSegIndex++;
             if (currentSegIndex < [_segments count]) {
                 inLoop = false;
