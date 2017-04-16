@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fc5-xH-2eE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fc5-xH-2eE">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -67,21 +67,28 @@
                                         <rect key="frame" x="0.0" y="163" width="375" height="54"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRF-Wj-aIy">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="54"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="54"/>
                                                 <state key="normal" title="导出视频"/>
                                                 <connections>
                                                     <action selector="outputVideo:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="wso-BN-Das"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhW-pv-Ocs">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="54"/>
+                                                <rect key="frame" x="93.5" y="0.0" width="94" height="54"/>
                                                 <state key="normal" title="视频回放"/>
                                                 <connections>
                                                     <action selector="playAudioEvent:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="t8y-K0-t82"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xY-vh-6l0">
+                                                <rect key="frame" x="187.5" y="0.0" width="94" height="54"/>
+                                                <state key="normal" title="视频滤镜"/>
+                                                <connections>
+                                                    <action selector="videoFilter:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="HA0-Vc-qva"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQS-wM-UEN">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="54"/>
+                                                <rect key="frame" x="281.5" y="0.0" width="93.5" height="54"/>
                                                 <state key="normal" title="重新开始"/>
                                                 <connections>
                                                     <action selector="restartRecordButton:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="b9J-Yw-CIj"/>
@@ -91,6 +98,7 @@
                                         <constraints>
                                             <constraint firstItem="FhW-pv-Ocs" firstAttribute="width" secondItem="oRF-Wj-aIy" secondAttribute="width" id="8eA-td-nTp"/>
                                             <constraint firstItem="UQS-wM-UEN" firstAttribute="width" secondItem="oRF-Wj-aIy" secondAttribute="width" id="B18-Lx-jBD"/>
+                                            <constraint firstItem="8xY-vh-6l0" firstAttribute="width" secondItem="FhW-pv-Ocs" secondAttribute="width" id="rOD-6z-98R"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -167,7 +175,67 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDg-f5-xaI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528.79999999999995" y="-152.47376311844079"/>
+            <point key="canvasLocation" x="782" y="-600"/>
+        </scene>
+        <!--Video Filter View Controller-->
+        <scene sceneID="FlB-YU-5SR">
+            <objects>
+                <viewController storyboardIdentifier="videofilter" id="o2t-hH-U0M" customClass="MXVideoFilterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PEp-Zm-5x1"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rd2-xy-SwX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="U4X-yM-gIt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vis-BQ-Xnh" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="WMW-5v-Zjh"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4g-pS-97d">
+                                <rect key="frame" x="17.5" y="257" width="340" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(像素过滤效果）进度：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj3-Wd-EAu">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3z-JI-7bE">
+                                        <rect key="frame" x="170" y="0.0" width="170" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="340" id="aQb-Wa-4Qt"/>
+                                    <constraint firstAttribute="height" constant="45" id="gCs-r2-ky1"/>
+                                    <constraint firstItem="x3z-JI-7bE" firstAttribute="width" secondItem="Qj3-Wd-EAu" secondAttribute="width" id="r9O-AY-btt"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h4g-pS-97d" firstAttribute="top" secondItem="vis-BQ-Xnh" secondAttribute="bottom" constant="37" id="8D7-Am-Cif"/>
+                            <constraint firstItem="vis-BQ-Xnh" firstAttribute="top" secondItem="PEp-Zm-5x1" secondAttribute="bottom" id="HYp-eP-oU2"/>
+                            <constraint firstAttribute="trailing" secondItem="vis-BQ-Xnh" secondAttribute="trailing" id="VUb-iD-0li"/>
+                            <constraint firstItem="vis-BQ-Xnh" firstAttribute="leading" secondItem="U4X-yM-gIt" secondAttribute="leading" id="c9t-ri-nrd"/>
+                            <constraint firstItem="h4g-pS-97d" firstAttribute="centerX" secondItem="vis-BQ-Xnh" secondAttribute="centerX" id="mb0-Tq-OBJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="gpuImageView" destination="vis-BQ-Xnh" id="Pdf-GW-eVr"/>
+                        <outlet property="process" destination="x3z-JI-7bE" id="BzF-Kl-r2H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n7K-Xk-gBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="765.60000000000002" y="109.29535232383809"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="60N-zU-KPV">

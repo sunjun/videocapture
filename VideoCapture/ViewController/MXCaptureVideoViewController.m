@@ -12,6 +12,7 @@
 #import <Photos/Photos.h>
 #import "MXFilePathManager.h"
 #import "MXPlayVideoViewController.h"
+#import "MXVideoFilterViewController.h"
 
 
 static int current = 0;
@@ -624,6 +625,12 @@ static int current = 0;
     }];
 
 }
+- (IBAction)videoFilter:(id)sender {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MXVideoFilterViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"videofilter"];
+    [self.navigationController pushViewController:viewController   animated:NO];
+}
+
 - (IBAction)restartRecordButton:(id)sender {
     [self setup];
 }
