@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+enum CMDTag {
+    START_RECORDING = 0,
+    NEXT,
+    PREVIOUS,
+    STOP,
+    SEND_VIDEO_CLIP,
+    SEND_PREVIEW_PICTURE
+};
+
 @interface MXCaptureVideoViewController : UIViewController
+
+@property (atomic) BOOL isControlPeer;
+- (IBAction)nextLoop:(id)sender;
 
 @end

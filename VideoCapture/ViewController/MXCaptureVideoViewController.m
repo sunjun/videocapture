@@ -14,6 +14,8 @@
 #import "MXPlayVideoViewController.h"
 #import "MXVideoFilterViewController.h"
 
+#import "OCSocketClient.h"
+#import "OCSocketServer.h"
 
 static int current = 0;
 
@@ -35,6 +37,9 @@ static int current = 0;
     NSUInteger MAX_SEGMENT;
     AVAssetExportSession *_exportSession;
     BOOL _needSave;
+    
+    OCSocketClient *_client;
+    OCSocketServer *_server;
 }
 
 
@@ -62,6 +67,13 @@ static int current = 0;
     [self authorization];
     
     [self setup];
+    
+    //开启socket服务端等待连接
+    _isControlPeer = NO;
+    _server = [[OCSocketServer alloc] init];
+    [_server startServerWithController:self];
+//    _client = [[OCSocketClient alloc] init];
+//    [_client connect2Server:@"192.168.1.101" port:12345 withController:self];
 }
 
 - (void)setup {
@@ -76,7 +88,7 @@ static int current = 0;
     _replayVideoButton.enabled = NO;
 //    [self transformCfgFile];
     [self setLoopSongSegment];
-    [self playAudio];
+//    [self playAudio];
 }
 
 - (void)transformCfgFile {
@@ -472,53 +484,74 @@ static int current = 0;
 
 - (IBAction)nextLoop:(id)sender {
     
-    _isInLoop = NO;
-    _recordState.text = @"已停止录制";
-    [self stopRecordVideo:YES];
+    if (_isControlPeer == YES) {
+        //控制端 发送下一段指令
+        NSString* cmdString = [@(NEXT) stringValue];
 
-    looping++;
-    _audioPlayer.currentTime = _audioSegment.endLoop;
-    
-    if (looping >= MAX_SEGMENT) {
-        _nextButton.enabled = NO;
-    }
-    if (looping > 0) {
-        _forwardButton.enabled = YES;
-    }
-    
-    if (looping >= MAX_SEGMENT) {
-        _audioSegment = nil;
+        [_client sendCmd:cmdString];
     } else {
-        _audioSegment = [_audioSegments objectAtIndex:looping];
+        NSLog(@"ibaction nextLoop called\n");
+        _isInLoop = NO;
+        _recordState.text = @"已停止录制";
+        [self stopRecordVideo:YES];
+        
+        looping++;
+        _audioPlayer.currentTime = _audioSegment.endLoop;
+        
+        if (looping >= MAX_SEGMENT) {
+            _nextButton.enabled = NO;
+        }
+        if (looping > 0) {
+            _forwardButton.enabled = YES;
+        }
+        
+        if (looping >= MAX_SEGMENT) {
+            _audioSegment = nil;
+        } else {
+            _audioSegment = [_audioSegments objectAtIndex:looping];
+        }
     }
 }
 
 - (IBAction)forwardLoop:(id)sender {
-    _isInLoop = NO;
-    _recordState.text = @"已停止录制";
-    [self stopRecordVideo:NO];
-    
-    looping--;
-    
-    if (looping < MAX_SEGMENT) {
-         _nextButton.enabled = YES;
+    if (_isControlPeer == YES) {
+        //控制端 发送上一段指令
+        NSString* cmdString = [@(PREVIOUS) stringValue];
+        [_client sendCmd:cmdString];
+
+    } else {
+        _isInLoop = NO;
+        _recordState.text = @"已停止录制";
+        [self stopRecordVideo:NO];
+        
+        looping--;
+        
+        if (looping < MAX_SEGMENT) {
+            _nextButton.enabled = YES;
+        }
+        if (looping == 0) {
+            _forwardButton.enabled = NO;
+        }
+        
+        if (looping >= 0) {
+            _audioSegment = [_audioSegments objectAtIndex:looping];
+            _audioPlayer.currentTime = _audioSegment.segmentStart;
+        }
     }
-    if (looping == 0) {
-        _forwardButton.enabled = NO;
-    }
-    
-    if (looping >= 0) {
-        _audioSegment = [_audioSegments objectAtIndex:looping];
-        _audioPlayer.currentTime = _audioSegment.segmentStart;
-    }
-    
-    
 }
+
 - (void)stopRecordVideo:(BOOL)save
 {
-    _needSave = save;
-    // 取消视频拍摄
-    [_movieOutput stopRecording];
+    if (_isControlPeer == YES) {
+        //控制端 发送结束指令
+        NSString* cmdString = [@(STOP) stringValue];
+        [_client sendCmd:cmdString];
+
+    } else {
+        _needSave = save;
+        // 取消视频拍摄
+        [_movieOutput stopRecording];
+    }
 }
 
 - (IBAction)outputVideo:(id)sender {
