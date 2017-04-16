@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B18370E1E8CA3C200AC9A1B /* socketClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B18370C1E8CA3C200AC9A1B /* socketClient.c */; };
+		7B1837111E8CA3ED00AC9A1B /* socketServer.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B18370F1E8CA3ED00AC9A1B /* socketServer.c */; };
 		F5C3C95E1E65C2A8002EFD33 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C3C95D1E65C2A8002EFD33 /* MobileCoreServices.framework */; };
 		F5CF8BBA1E65A6CB00DCB52C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BB91E65A6CB00DCB52C /* main.m */; };
 		F5CF8BBD1E65A6CB00DCB52C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CF8BBC1E65A6CB00DCB52C /* AppDelegate.m */; };
@@ -28,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B18370C1E8CA3C200AC9A1B /* socketClient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socketClient.c; sourceTree = "<group>"; };
+		7B18370D1E8CA3C200AC9A1B /* socketClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socketClient.h; sourceTree = "<group>"; };
+		7B18370F1E8CA3ED00AC9A1B /* socketServer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socketServer.c; sourceTree = "<group>"; };
+		7B1837101E8CA3ED00AC9A1B /* socketServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socketServer.h; sourceTree = "<group>"; };
 		F5C3C95D1E65C2A8002EFD33 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F5CF8BB51E65A6CB00DCB52C /* VideoCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5CF8BB91E65A6CB00DCB52C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,6 +144,10 @@
 			children = (
 				F5ECCA5D1E82BAFE00EC1071 /* MXFilePathManager.h */,
 				F5ECCA5E1E82BAFE00EC1071 /* MXFilePathManager.m */,
+				7B18370C1E8CA3C200AC9A1B /* socketClient.c */,
+				7B18370D1E8CA3C200AC9A1B /* socketClient.h */,
+				7B18370F1E8CA3ED00AC9A1B /* socketServer.c */,
+				7B1837101E8CA3ED00AC9A1B /* socketServer.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -198,7 +208,7 @@
 				TargetAttributes = {
 					F5CF8BB41E65A6CB00DCB52C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 3HKRV44T78;
+						DevelopmentTeam = XUD9S2ZUQB;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -300,8 +310,10 @@
 				F5ECCA6D1E82BB2800EC1071 /* MXAudioSegment.m in Sources */,
 				F5CF8BBA1E65A6CB00DCB52C /* main.m in Sources */,
 				F5ECCA681E82BB0500EC1071 /* MXPlayVideoViewController.m in Sources */,
+				7B1837111E8CA3ED00AC9A1B /* socketServer.c in Sources */,
 				F5ECCA671E82BB0500EC1071 /* MXCaptureVideoViewController.m in Sources */,
 				F5ECCA5F1E82BAFE00EC1071 /* MXFilePathManager.m in Sources */,
+				7B18370E1E8CA3C200AC9A1B /* socketClient.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,11 +433,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3HKRV44T78;
+				DEVELOPMENT_TEAM = XUD9S2ZUQB;
 				INFOPLIST_FILE = VideoCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.dong;
+				PRODUCT_BUNDLE_IDENTIFIER = com.free.sun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -434,11 +446,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3HKRV44T78;
+				DEVELOPMENT_TEAM = XUD9S2ZUQB;
 				INFOPLIST_FILE = VideoCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.dong;
+				PRODUCT_BUNDLE_IDENTIFIER = com.free.sun;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
