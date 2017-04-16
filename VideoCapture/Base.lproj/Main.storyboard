@@ -31,20 +31,20 @@
                                 <rect key="frame" x="0.0" y="450" width="375" height="217"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAh-QR-Ngv">
-                                        <rect key="frame" x="0.0" y="13" width="375" height="110"/>
+                                        <rect key="frame" x="0.0" y="13" width="375" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bk-xq-Occ">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="110"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
                                                 <state key="normal" title="上一个循环"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VmJ-wM-iq1">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="110"/>
+                                                <rect key="frame" x="125" y="0.0" width="125" height="60"/>
                                                 <state key="normal" title="暂停">
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-XN-FuX">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="110"/>
+                                                <rect key="frame" x="250" y="0.0" width="125" height="60"/>
                                                 <state key="normal" title="下一个循环"/>
                                                 <connections>
                                                     <action selector="nextLoop:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="dgf-xW-xtc"/>
@@ -53,7 +53,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="VmJ-wM-iq1" firstAttribute="width" secondItem="3bk-xq-Occ" secondAttribute="width" id="Q26-S6-iiK"/>
-                                            <constraint firstAttribute="height" constant="110" id="Zbu-lw-Psq"/>
+                                            <constraint firstAttribute="height" constant="60" id="Zbu-lw-Psq"/>
                                             <constraint firstItem="JgC-XN-FuX" firstAttribute="width" secondItem="3bk-xq-Occ" secondAttribute="width" id="hkG-La-MFv"/>
                                         </constraints>
                                     </stackView>
@@ -64,31 +64,31 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9j-kV-4Bh">
-                                        <rect key="frame" x="0.0" y="103" width="375" height="94"/>
+                                        <rect key="frame" x="0.0" y="53" width="375" height="144"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRF-Wj-aIy">
-                                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="54"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="93.5" height="144"/>
                                                 <state key="normal" title="导出视频"/>
                                                 <connections>
                                                     <action selector="outputVideo:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="wso-BN-Das"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhW-pv-Ocs">
-                                                <rect key="frame" x="93.5" y="0.0" width="94" height="54"/>
+                                                <rect key="frame" x="93.5" y="0.0" width="94" height="144"/>
                                                 <state key="normal" title="视频回放"/>
                                                 <connections>
                                                     <action selector="playAudioEvent:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="t8y-K0-t82"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xY-vh-6l0">
-                                                <rect key="frame" x="187.5" y="0.0" width="94" height="54"/>
+                                                <rect key="frame" x="187.5" y="0.0" width="94" height="144"/>
                                                 <state key="normal" title="视频滤镜"/>
                                                 <connections>
                                                     <action selector="videoFilter:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="HA0-Vc-qva"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQS-wM-UEN">
-                                                <rect key="frame" x="281.5" y="0.0" width="93.5" height="54"/>
+                                                <rect key="frame" x="281.5" y="0.0" width="93.5" height="144"/>
                                                 <state key="normal" title="重新开始"/>
                                                 <connections>
                                                     <action selector="restartRecordButton:" destination="XRj-sh-2Jt" eventType="touchUpInside" id="b9J-Yw-CIj"/>
