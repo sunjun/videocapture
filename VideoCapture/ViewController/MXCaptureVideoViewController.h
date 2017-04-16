@@ -20,6 +20,21 @@ enum CMDTag {
 @interface MXCaptureVideoViewController : UIViewController
 
 @property (atomic) BOOL isControlPeer;
+
+//START_RECORDING
+- (void)playAudio;
+
+//NEXT
 - (IBAction)nextLoop:(id)sender;
+
+//PREVIOUS
+- (IBAction)forwardLoop:(id)sender;
+
+//STOP
+- (void)stopRecordVideo:(BOOL)save;
+
+//SEND_VIDEO_CLIP
+
+//SEND_PREVIEW_PICTURE
 
 @end

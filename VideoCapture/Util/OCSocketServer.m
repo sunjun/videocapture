@@ -62,7 +62,9 @@
     
     switch ([receiverStr intValue]) {
             
-        case PREVIOUS:
+        case START_RECORDING:
+            NSLog(@"START_RECORDING receive\n");
+            [_controller playAudio];
             break;
             
         case NEXT:
@@ -70,7 +72,20 @@
             [_controller nextLoop:nil];
             break;
             
+        case PREVIOUS:
+            NSLog(@"PREVIOUS receive\n");
+            [_controller forwardLoop:nil];
+            break;
+            
         case STOP:
+            NSLog(@"STOP receive\n");
+            [_controller stopRecordVideo:YES];
+            break;
+            
+        case SEND_VIDEO_CLIP:
+            break;
+            
+        case SEND_PREVIEW_PICTURE:
             break;
             
         default:
