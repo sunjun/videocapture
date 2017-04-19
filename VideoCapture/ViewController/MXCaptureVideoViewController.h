@@ -14,7 +14,8 @@ enum CMDTag {
     PREVIOUS,
     STOP,
     SEND_VIDEO_CLIP,
-    SEND_PREVIEW_PICTURE
+    SEND_PREVIEW_PICTURE,
+    EXPORT_VIDEO
 };
 
 @interface MXCaptureVideoViewController : UIViewController
@@ -37,4 +38,6 @@ enum CMDTag {
 
 //SEND_PREVIEW_PICTURE
 
+//EXPORT_VIDEO
+- (IBAction)outputVideo:(id)sender;
 @end

@@ -88,6 +88,10 @@
         case SEND_PREVIEW_PICTURE:
             break;
             
+        case EXPORT_VIDEO:
+            NSLog(@"EXPORT_VIDEO receive\n");
+            [_controller outputVideo:nil];
+            break;
         default:
             break;
     }
