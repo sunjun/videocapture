@@ -284,7 +284,7 @@
 				TargetAttributes = {
 					F5CF8BB41E65A6CB00DCB52C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = XUD9S2ZUQB;
+						DevelopmentTeam = 3HKRV44T78;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -405,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3B2CC81EA04AA1002B5DA1 /* GCDAsyncSocket.m in Sources */,
 				F5CF8BBD1E65A6CB00DCB52C /* AppDelegate.m in Sources */,
 				F5ECCA6D1E82BB2800EC1071 /* MXAudioSegment.m in Sources */,
 				7B3B2CC21EA049C3002B5DA1 /* OCSocketClient.m in Sources */,
@@ -543,7 +544,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XUD9S2ZUQB;
+				DEVELOPMENT_TEAM = 3HKRV44T78;
 				HEADER_SEARCH_PATHS = "./framework/**";
 				INFOPLIST_FILE = VideoCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -557,7 +558,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = XUD9S2ZUQB;
+				DEVELOPMENT_TEAM = 3HKRV44T78;
 				HEADER_SEARCH_PATHS = "./framework/**";
 				INFOPLIST_FILE = VideoCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

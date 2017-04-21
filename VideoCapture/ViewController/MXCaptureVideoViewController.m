@@ -90,7 +90,7 @@ static int current = 0;
     _fiterVideoButton.enabled = NO;
 //    [self transformCfgFile];
     [self setLoopSongSegment];
-//    [self playAudio];
+    [self playAudio];
 }
 
 
@@ -478,9 +478,13 @@ static int current = 0;
         }
 
         if (_isInLoop) {
+            _videoview.hidden = NO;
             if(fabs(_audioPlayer.currentTime - _audioSegment.endLoop) < 0.1) {
                 _audioPlayer.currentTime = _audioSegment.startLoop;
             }
+        }
+        else {
+            _videoview.hidden = YES;
         }
         
     }];
@@ -604,7 +608,14 @@ static int current = 0;
             
             NSLog(@"%@",[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%lu.mov",i]]);
             CMTimeRange videoSnapRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
-            [videoTrack insertTimeRange:videoSnapRange ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo][0] atTime:kCMTimeZero error:nil];
+            @try {
+                [videoTrack insertTimeRange:videoSnapRange ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo][0] atTime:kCMTimeZero error:nil];
+            } @catch (NSException *exception) {
+                _recordState.text = @"请按流程使用";
+                return ;
+            } @finally {
+            
+            }
         }
         
         CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(M_PI_2);
