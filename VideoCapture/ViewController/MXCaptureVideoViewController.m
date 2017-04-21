@@ -14,6 +14,8 @@
 #import "MXReplayVideoViewController.h"
 #import "MXVideoFilterViewController.h"
 
+#import "OCSocketClient.h"
+#import "OCSocketServer.h"
 
 static int current = 0;
 
@@ -35,6 +37,9 @@ static int current = 0;
     NSUInteger MAX_SEGMENT;
     AVAssetExportSession *_exportSession;
     BOOL _needSave;
+    
+    OCSocketClient *_client;
+    OCSocketServer *_server;
 }
 
 
@@ -63,6 +68,13 @@ static int current = 0;
     [self authorization];
     
     [self setup];
+    
+    //开启socket服务端等待连接
+    _isControlPeer = NO;
+    _server = [[OCSocketServer alloc] init];
+    [_server startServerWithController:self];
+//    _client = [[OCSocketClient alloc] init];
+//    [_client connect2Server:@"192.168.1.100" port:12345 withController:self];
 }
 
 - (void)setup {
@@ -78,7 +90,7 @@ static int current = 0;
     _fiterVideoButton.enabled = NO;
 //    [self transformCfgFile];
     [self setLoopSongSegment];
-    [self playAudio];
+//    [self playAudio];
 }
 
 
@@ -476,158 +488,185 @@ static int current = 0;
 
 - (IBAction)nextLoop:(id)sender {
     
-    _isInLoop = NO;
-    _recordState.text = @"已停止录制";
-    [self stopRecordVideo:YES];
+    if (_isControlPeer == YES) {
+        //控制端 发送下一段指令
+        NSString* cmdString = [@(NEXT) stringValue];
 
-    looping++;
-    _audioPlayer.currentTime = _audioSegment.endLoop;
-    
-    if (looping >= MAX_SEGMENT) {
-        _nextButton.enabled = NO;
-    }
-    if (looping > 0) {
-        _forwardButton.enabled = YES;
-    }
-    
-    if (looping >= MAX_SEGMENT) {
-        _audioSegment = nil;
+        [_client sendCmd:cmdString];
     } else {
-        _audioSegment = [_audioSegments objectAtIndex:looping];
+        NSLog(@"ibaction nextLoop called\n");
+        _isInLoop = NO;
+        _recordState.text = @"已停止录制";
+        [self stopRecordVideo:YES];
+        
+        looping++;
+        _audioPlayer.currentTime = _audioSegment.endLoop;
+        
+        if (looping >= MAX_SEGMENT) {
+            _nextButton.enabled = NO;
+        }
+        if (looping > 0) {
+            _forwardButton.enabled = YES;
+        }
+        
+        if (looping >= MAX_SEGMENT) {
+            _audioSegment = nil;
+        } else {
+            _audioSegment = [_audioSegments objectAtIndex:looping];
+        }
     }
 }
 
 - (IBAction)forwardLoop:(id)sender {
-    _isInLoop = NO;
-    _recordState.text = @"已停止录制";
-    [self stopRecordVideo:NO];
-    
-    looping--;
-    
-    if (looping < MAX_SEGMENT) {
-         _nextButton.enabled = YES;
+    if (_isControlPeer == YES) {
+        //控制端 发送上一段指令
+        NSString* cmdString = [@(PREVIOUS) stringValue];
+        [_client sendCmd:cmdString];
+
+    } else {
+        _isInLoop = NO;
+        _recordState.text = @"已停止录制";
+        [self stopRecordVideo:NO];
+        
+        looping--;
+        
+        if (looping < MAX_SEGMENT) {
+            _nextButton.enabled = YES;
+        }
+        if (looping == 0) {
+            _forwardButton.enabled = NO;
+        }
+        
+        if (looping >= 0) {
+            _audioSegment = [_audioSegments objectAtIndex:looping];
+            _audioPlayer.currentTime = _audioSegment.segmentStart;
+        }
     }
-    if (looping == 0) {
-        _forwardButton.enabled = NO;
-    }
-    
-    if (looping >= 0) {
-        _audioSegment = [_audioSegments objectAtIndex:looping];
-        _audioPlayer.currentTime = _audioSegment.segmentStart;
-    }
-    
-    
 }
+
 - (void)stopRecordVideo:(BOOL)save
 {
-    _needSave = save;
-    // 取消视频拍摄
-    [_movieOutput stopRecording];
+    if (_isControlPeer == YES) {
+        //控制端 发送结束指令
+        NSString* cmdString = [@(STOP) stringValue];
+        [_client sendCmd:cmdString];
+
+    } else {
+        _needSave = save;
+        // 取消视频拍摄
+        [_movieOutput stopRecording];
+    }
 }
 
 - (IBAction)outputVideo:(id)sender {
-    
-    //混合音频和视频
-    AVMutableComposition *composition = [AVMutableComposition composition];
-    
-    
-    //音频
-    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *path = [NSString stringWithFormat:@"%@/song_test_20.m4a", resourcePath];
-
-    AVAsset *audioAsset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
-    AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
-    
-
-    for (NSInteger i = [_audioSegments count] - 1; i >= 0; i--)
-    {
-        MXAudioSegment *segment = [_audioSegments objectAtIndex:i];
-        NSRange audioSnap = NSMakeRange(segment.startLoop, segment.endLoop - segment.startLoop);
-        //开始位置startTime
-        CMTime startTime = CMTimeMakeWithSeconds(audioSnap.location, audioAsset.duration.timescale);
-        //截取长度
-        CMTime audioDuration = CMTimeMakeWithSeconds(audioSnap.length, audioAsset.duration.timescale);
-        CMTimeRange audioSnapRange = CMTimeRangeMake(startTime, audioDuration);
-        [audioTrack insertTimeRange:audioSnapRange ofTrack:[audioAsset tracksWithMediaType:AVMediaTypeAudio][0] atTime:kCMTimeZero error:nil];
-    }
-
-    //视频
-     AVMutableCompositionTrack *videoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
-    for (NSInteger i = [_audioSegments count] - 1; i >= 0; i--)
-    {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *videoPath = paths[0];
-        videoPath = [videoPath stringByAppendingPathComponent:[NSString stringWithFormat:@"mx_%lu.mov",i]];
+    if (_isControlPeer == YES) {
+        //控制端 发送导出指令
+        NSString* cmdString = [@(EXPORT_VIDEO) stringValue];
+        [_client sendCmd:cmdString];
         
-        NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
-        NSDictionary *optDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
-        AVURLAsset *videoAsset = [[AVURLAsset alloc] initWithURL:videoURL options:optDict];
+    } else {
         
-        NSLog(@"%@",[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%lu.mov",i]]);
-        CMTimeRange videoSnapRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
-        [videoTrack insertTimeRange:videoSnapRange ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo][0] atTime:kCMTimeZero error:nil];
-    }
-    
-    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(M_PI_2);
-    //    CGAffineTransform rotateTranslate = CGAffineTransformTranslate(rotationTransform,360,0);
-    videoTrack.preferredTransform = rotationTransform;
-    
-    //导出
-    //AVAssetExportSession用于合并文件，导出合并后文件，presetName文件的输出类型
-    AVAssetExportSession *assetExportSession = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
-    
-    NSString *outPutPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"finish.mov"];
-    //混合后的视频输出路径
-    NSURL *compositionURLPath = [NSURL fileURLWithPath:outPutPath];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:outPutPath])
-    {
-        [[NSFileManager defaultManager] removeItemAtPath:outPutPath error:nil];
-    }
-    
-    //输出视频格式 AVFileTypeMPEG4 AVFileTypeQuickTimeMovie...
-    assetExportSession.outputFileType = AVFileTypeQuickTimeMovie;
-    assetExportSession.outputURL = compositionURLPath;
-
- 
-    
-    [assetExportSession exportAsynchronouslyWithCompletionHandler:^(void){
-        switch (assetExportSession.status) {
-            case AVAssetExportSessionStatusCompleted:
-            {
-                __block PHObjectPlaceholder *placeholder;
-                
-                [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-                    PHAssetChangeRequest* createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:assetExportSession.outputURL];
-                    placeholder = [createAssetRequest placeholderForCreatedAsset];
-                    
-                } completionHandler:^(BOOL success, NSError *error) {
-                    if (success)
-                    {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            _recordState.text = @"导出成功，请去相册查看";
-                            _nextButton.enabled = YES;
-                            _forwardButton.enabled = NO;
-                        });
-                    }
-                    else
-                    {
-                        NSLog(@"%@", error);
-                    }
-                }];
-            }
-                break;
-            case AVAssetExportSessionStatusFailed:
-                NSLog(@"Failed:%@",assetExportSession.error);
-                break;
-            case AVAssetExportSessionStatusCancelled:
-                NSLog(@"Canceled:%@",assetExportSession.error);
-                break;
-            default:
-                break;
+        //混合音频和视频
+        AVMutableComposition *composition = [AVMutableComposition composition];
+        
+        
+        //音频
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        NSString *path = [NSString stringWithFormat:@"%@/song_test_20.m4a", resourcePath];
+        
+        AVAsset *audioAsset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
+        AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+        
+        
+        for (NSInteger i = [_audioSegments count] - 1; i >= 0; i--)
+        {
+            MXAudioSegment *segment = [_audioSegments objectAtIndex:i];
+            NSRange audioSnap = NSMakeRange(segment.startLoop, segment.endLoop - segment.startLoop);
+            //开始位置startTime
+            CMTime startTime = CMTimeMakeWithSeconds(audioSnap.location, audioAsset.duration.timescale);
+            //截取长度
+            CMTime audioDuration = CMTimeMakeWithSeconds(audioSnap.length, audioAsset.duration.timescale);
+            CMTimeRange audioSnapRange = CMTimeRangeMake(startTime, audioDuration);
+            [audioTrack insertTimeRange:audioSnapRange ofTrack:[audioAsset tracksWithMediaType:AVMediaTypeAudio][0] atTime:kCMTimeZero error:nil];
         }
-    }];
-
+        
+        //视频
+        AVMutableCompositionTrack *videoTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+        for (NSInteger i = [_audioSegments count] - 1; i >= 0; i--)
+        {
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *videoPath = paths[0];
+            videoPath = [videoPath stringByAppendingPathComponent:[NSString stringWithFormat:@"mx_%lu.mov",i]];
+            
+            NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
+            NSDictionary *optDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+            AVURLAsset *videoAsset = [[AVURLAsset alloc] initWithURL:videoURL options:optDict];
+            
+            NSLog(@"%@",[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"%lu.mov",i]]);
+            CMTimeRange videoSnapRange = CMTimeRangeMake(kCMTimeZero, videoAsset.duration);
+            [videoTrack insertTimeRange:videoSnapRange ofTrack:[videoAsset tracksWithMediaType:AVMediaTypeVideo][0] atTime:kCMTimeZero error:nil];
+        }
+        
+        CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(M_PI_2);
+        //    CGAffineTransform rotateTranslate = CGAffineTransformTranslate(rotationTransform,360,0);
+        videoTrack.preferredTransform = rotationTransform;
+        
+        //导出
+        //AVAssetExportSession用于合并文件，导出合并后文件，presetName文件的输出类型
+        AVAssetExportSession *assetExportSession = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+        
+        NSString *outPutPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"finish.mov"];
+        //混合后的视频输出路径
+        NSURL *compositionURLPath = [NSURL fileURLWithPath:outPutPath];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:outPutPath])
+        {
+            [[NSFileManager defaultManager] removeItemAtPath:outPutPath error:nil];
+        }
+        
+        //输出视频格式 AVFileTypeMPEG4 AVFileTypeQuickTimeMovie...
+        assetExportSession.outputFileType = AVFileTypeQuickTimeMovie;
+        assetExportSession.outputURL = compositionURLPath;
+        
+        
+        
+        [assetExportSession exportAsynchronouslyWithCompletionHandler:^(void){
+            switch (assetExportSession.status) {
+                case AVAssetExportSessionStatusCompleted:
+                {
+                    __block PHObjectPlaceholder *placeholder;
+                    
+                    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                        PHAssetChangeRequest* createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:assetExportSession.outputURL];
+                        placeholder = [createAssetRequest placeholderForCreatedAsset];
+                        
+                    } completionHandler:^(BOOL success, NSError *error) {
+                        if (success)
+                        {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                _recordState.text = @"导出成功，请去相册查看";
+                                _nextButton.enabled = YES;
+                                _forwardButton.enabled = NO;
+                            });
+                        }
+                        else
+                        {
+                            NSLog(@"%@", error);
+                        }
+                    }];
+                }
+                    break;
+                case AVAssetExportSessionStatusFailed:
+                    NSLog(@"Failed:%@",assetExportSession.error);
+                    break;
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Canceled:%@",assetExportSession.error);
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }
 }
 - (IBAction)videoFilter:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
