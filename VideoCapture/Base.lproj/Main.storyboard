@@ -129,6 +129,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="H73-Ap-Lhi"/>
                     <connections>
+                        <outlet property="fiterVideoButton" destination="8xY-vh-6l0" id="wH8-2y-eX4"/>
                         <outlet property="forwardButton" destination="3bk-xq-Occ" id="dKo-Qc-4zt"/>
                         <outlet property="nextButton" destination="JgC-XN-FuX" id="cHr-Fh-QhV"/>
                         <outlet property="outputResultVideo" destination="oRF-Wj-aIy" id="Ujl-WR-sjn"/>
@@ -142,40 +143,40 @@
             </objects>
             <point key="canvasLocation" x="-263.19999999999999" y="-151.57421289355324"/>
         </scene>
-        <!--Play Video View Controller-->
-        <scene sceneID="iaD-mi-tD9">
+        <!--Replay Video View Controller-->
+        <scene sceneID="0ev-gF-1QS">
             <objects>
-                <viewController storyboardIdentifier="playviewcontroller" id="poi-Wv-AwV" customClass="MXPlayVideoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="replayvideocontroller" id="sID-1l-CLT" customClass="MXReplayVideoViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="syB-ai-Nyi"/>
-                        <viewControllerLayoutGuide type="bottom" id="0LF-Ll-01F"/>
+                        <viewControllerLayoutGuide type="top" id="TJc-0X-1hv"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hpl-MY-nUp"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lcr-hu-yEe">
+                    <view key="view" contentMode="scaleToFill" id="9dB-en-J5p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3Q-s2-su8" userLabel="VideoView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="356"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vFc-vF-QGV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="356" id="tvl-Tc-AZn"/>
+                                    <constraint firstAttribute="height" constant="400" id="dWB-Rs-2pd"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="H3Q-s2-su8" secondAttribute="trailing" id="OUX-xN-PGz"/>
-                            <constraint firstItem="H3Q-s2-su8" firstAttribute="leading" secondItem="lcr-hu-yEe" secondAttribute="leading" id="R8w-cb-yl9"/>
-                            <constraint firstItem="H3Q-s2-su8" firstAttribute="top" secondItem="syB-ai-Nyi" secondAttribute="bottom" id="RV1-S5-d2V"/>
+                            <constraint firstAttribute="trailing" secondItem="vFc-vF-QGV" secondAttribute="trailing" id="Obd-Pz-Ytj"/>
+                            <constraint firstItem="vFc-vF-QGV" firstAttribute="top" secondItem="9dB-en-J5p" secondAttribute="top" id="etZ-dD-mLz"/>
+                            <constraint firstItem="vFc-vF-QGV" firstAttribute="leading" secondItem="9dB-en-J5p" secondAttribute="leading" id="nIA-eh-yrd"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="videoView" destination="H3Q-s2-su8" id="8bA-oa-TCs"/>
+                        <outlet property="videoView" destination="vFc-vF-QGV" id="GCr-bD-5d1"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RDg-f5-xaI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Hh-GJ-dyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="782" y="-600"/>
+            <point key="canvasLocation" x="810" y="-788"/>
         </scene>
         <!--Video Filter View Controller-->
         <scene sceneID="FlB-YU-5SR">

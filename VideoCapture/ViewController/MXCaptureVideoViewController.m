@@ -11,7 +11,7 @@
 #import "MXAudioSegment.h"
 #import <Photos/Photos.h>
 #import "MXFilePathManager.h"
-#import "MXPlayVideoViewController.h"
+#import "MXReplayVideoViewController.h"
 #import "MXVideoFilterViewController.h"
 
 
@@ -46,6 +46,7 @@ static int current = 0;
 @property (weak, nonatomic) IBOutlet UIButton *outputResultVideo;
 @property (weak, nonatomic) IBOutlet UIButton *restartRecord;
 @property (weak, nonatomic) IBOutlet UIButton *replayVideoButton;
+@property (weak, nonatomic) IBOutlet UIButton *fiterVideoButton;
 
 @end
 
@@ -74,10 +75,12 @@ static int current = 0;
     _restartRecord.enabled = NO;
     _outputResultVideo.enabled = NO;
     _replayVideoButton.enabled = NO;
+    _fiterVideoButton.enabled = NO;
 //    [self transformCfgFile];
     [self setLoopSongSegment];
     [self playAudio];
 }
+
 
 - (void)transformCfgFile {
     NSString* path  = [[NSBundle mainBundle] pathForResource:@"[Schumann_Oboe_Romances]Official" ofType:@"cfg"];
@@ -452,6 +455,7 @@ static int current = 0;
             _restartRecord.enabled = YES;
             _outputResultVideo.enabled = YES;
             _replayVideoButton.enabled = YES;
+            _fiterVideoButton.enabled = YES;
             return ;
         }
         
@@ -641,8 +645,7 @@ static int current = 0;
 }
 - (IBAction)playAudioEvent:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MXPlayVideoViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"playviewcontroller"];
-    [viewController setUpData:_audioSegments];
+    MXReplayVideoViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"replayvideocontroller"];
     [self.navigationController pushViewController:viewController   animated:NO];
 }
 
