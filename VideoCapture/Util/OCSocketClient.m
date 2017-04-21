@@ -11,15 +11,17 @@
 
 @implementation OCSocketClient
 
+@synthesize socket;
+
 - (void) connect2Server:(NSString *)host port:(int)port withController:(MXCaptureVideoViewController *)controller {
     _controller = controller;
     //初始化socket，这里有两种方式。分别为是主/子线程中运行socket。根据项目不同而定
-    _socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];//这种是在主线程中运行
-    //_socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)]; 这种是在子线程中运行
+    socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];//这种是在主线程中运行
+    //socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)]; 这种是在子线程中运行
     
     //开始连接
     NSError *error = nil;
-    [_socket connectToHost:host onPort:port error:&error];
+    [socket connectToHost:host onPort:port error:&error];
     if(error) {
         NSLog(@"error:%@", error);
     }
@@ -31,7 +33,7 @@
 -(void)sendCmd:(NSString *)cmdString {
     NSData *cmdData = [cmdString dataUsingEncoding: NSUTF8StringEncoding];
     //发送登录指令。-1表示不超时。tag200表示这个指令的标识，很大用处
-    [_socket writeData:cmdData withTimeout:-1 tag:cmdString.intValue];
+    [socket writeData:cmdData withTimeout:-1 tag:cmdString.intValue];
 }
 
 #pragma mark -socket的代理

@@ -73,8 +73,6 @@ static int current = 0;
     _isControlPeer = NO;
     _server = [[OCSocketServer alloc] init];
     [_server startServerWithController:self];
-//    _client = [[OCSocketClient alloc] init];
-//    [_client connect2Server:@"192.168.1.100" port:12345 withController:self];
 }
 
 - (void)setup {
@@ -545,6 +543,24 @@ static int current = 0;
             _audioSegment = [_audioSegments objectAtIndex:looping];
             _audioPlayer.currentTime = _audioSegment.segmentStart;
         }
+    }
+}
+
+- (IBAction)setRemoteOrLocal:(id)sender
+{
+    UIBarButtonItem *item = (UIBarButtonItem *)sender;
+    if (_isControlPeer == NO) {
+        [item setTitle:@"set local"];
+        _isControlPeer = YES;
+        NSLog(@"connect remote");
+        _client = [[OCSocketClient alloc] init];
+        [_client connect2Server:@"192.168.1.101" port:12345 withController:self];
+    } else if (_isControlPeer == YES) {
+        [item setTitle:@"set remote"];
+        NSLog(@"set local");
+        _isControlPeer = NO;
+        [_client.socket disconnect];
+        _client = nil;
     }
 }
 

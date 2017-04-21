@@ -127,7 +127,13 @@
                             <constraint firstItem="x3w-1d-gzx" firstAttribute="top" secondItem="GfQ-Qj-e1U" secondAttribute="top" constant="20" id="sNn-m7-BdY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="H73-Ap-Lhi"/>
+                    <navigationItem key="navigationItem" id="H73-Ap-Lhi">
+                        <barButtonItem key="rightBarButtonItem" title="set remote" id="qg5-Me-5QU">
+                            <connections>
+                                <action selector="setRemoteOrLocal:" destination="XRj-sh-2Jt" id="lMU-i8-Ys0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="fiterVideoButton" destination="8xY-vh-6l0" id="wH8-2y-eX4"/>
                         <outlet property="forwardButton" destination="3bk-xq-Occ" id="dKo-Qc-4zt"/>
