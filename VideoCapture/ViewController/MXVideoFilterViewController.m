@@ -8,6 +8,7 @@
 
 #import "MXVideoFilterViewController.h"
 #import "GPUImage.h"
+#import <Photos/Photos.h>
 
 @interface MXVideoFilterViewController ()
 
@@ -36,9 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSURL *videoURL = [[NSBundle mainBundle] URLForResource:@"sample_iPod" withExtension:@"m4v"];
+    NSString *outPutPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"finish.mov"];
+    NSURL *videoPath = [NSURL fileURLWithPath:outPutPath];
     
-    self.movieFile = [[GPUImageMovie alloc] initWithURL:videoURL];
+    self.movieFile = [[GPUImageMovie alloc] initWithURL:videoPath];
     self.movieFile.runBenchmark = YES;
    self.movieFile.playAtActualSpeed = NO;
     
@@ -51,7 +53,7 @@
     [self.filter addTarget:filterView];
     
     
-    NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/movie.m4v"];
+    NSString *pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/movie.mov"];
     unlink([pathToMovie UTF8String]);
     
     NSURL *movieURL = [NSURL fileURLWithPath:pathToMovie];
@@ -71,7 +73,25 @@
         [weakSelf.movieWriter finishRecording];
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.timer invalidate];
-            weakSelf.process.text = @"100% 成功输出到相册";
+           
+            __block PHObjectPlaceholder *placeholder;
+            
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                PHAssetChangeRequest* createAssetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:movieURL];
+                placeholder = [createAssetRequest placeholderForCreatedAsset];
+                
+            } completionHandler:^(BOOL success, NSError *error) {
+                if (success)
+                {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        weakSelf.process.text = @"100% 成功输出到相册";
+                    });
+                }
+                else
+                {
+                    NSLog(@"%@", error);
+                }
+            }];
         });
     }];
 }
